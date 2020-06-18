@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/assets/stylesheets/profile.css">
+</head>
+
+<body>
+    <nav class="navbar">
+
+    <div class="search-bar">
+        <input type="text" name="search-box" id="search" placeholder="Search">
+    </div>
+
+    <div class="links">
+        <ul class="nav-links">
+            <li><a href="<%= user._id %>/edit">Edit Profile</a></li>
+            <li><a href="/<%= user._id %>/nominate">Nominate a Friend</a></li>
+            <li><a href="/">Notifications</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
+    </nav>
+
+    <section class="landing">
+
+        <div class="card">
+            <div class="profile-photo">
+                <!-- <img src="<%= user.imageUrl %>" alt=""> -->
+            </div>
+            <div class="profile">
+                <p class="name"><b>Name: </b><%= user.name %></p>
+                <p class="id"><b>Email: </b><%= user.email %></p>
+                <% if(user.bitsId) { %> 
+                    <p class="id"><b>BITS ID:</b> <%= user.bitsId %></p>
+                <% } %>
+                <p class="dept"><b>Discipline: </b><%= user.discipline %> </p>
+                <% if(user.quote) { %>
+                <p class="caption"><b>Yearbook Quote: </b><%= user.quote %></p>
+                <% } %>
+            </div>
+            <div class="update-id">
+            <form action="/addid/<%= user.id %>" method="POST" class="update-form">
+                <p class="id">
+                    <b>Update BITS ID:</b> 
+                        <input type = "text" name="user[bitsid]">
+                        <input type="submit" value="Submit">
+                        </p>
+            </form>
+            </div>
+        </div>
+    </section>
+    <!-- <section class="quotes-page">
+        <h1>What others are saying!</h1>
+        <div">
+            <h2>"Sabse bada chutiya hai."</h2><h3>-Priyanshu Shukla</h3>
+        </div>
+        <div>
+            <h2>"One of the Funniest guys I have ever met. Cracks me up."</h2><h3>-Soham Bhowmick</h3>
+        </div>
+        <div>
+            <h2>"Lawde ka BITSian hai. Hustle kar thoda."</h2><h3>-Puney Chawla</h3>
+        </div>
+    </section> -->
+    <script src="assets/scipts/app.js"></script>
+</body>
+</html>

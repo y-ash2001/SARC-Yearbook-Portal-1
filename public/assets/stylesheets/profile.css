@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;300&family=Open+Sans:wght@300&display=swap');
+
+/* General boilerplate code for resetting borders and margins */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	background: linear-gradient(
+			rgba(246, 247, 249, 0.8),
+			rgba(246, 247, 249, 0.8)
+		),
+		no-repeat center center fixed;
+	background-size: cover;
+}
+
+/* CSS for Navigation Bar and Hamburger Menu */
+nav {
+	height: 8vh;
+	background: #004e92;
+}
+
+.navbar {
+	display: flex;
+}
+
+.search-bar {
+	font-family: 'Heebo';
+	padding-top: 20px;
+	padding-left: 2vh;
+	width: 35%;
+}
+
+#search {
+	height: 4vh;
+	padding-left: 20px;
+	border: none;
+	border-radius: 20px;
+	margin-bottom: 20px;
+	background: rgba(255, 255, 255, 0.6);
+	font-size: 20px;
+	display: block;
+	width: 90%;
+	overflow: hidden;
+	line-height: 40px;
+}
+
+.links {
+	width: 65%;
+}
+
+.nav-links {
+	font-family: 'Heebo';
+	letter-spacing: 1.5px;
+	font-weight: 300;
+	display: flex;
+	list-style: none;
+	width: 100%;
+	height: 100%;
+	justify-content: space-around;
+	align-items: center;
+	margin-left: auto;
+}
+
+.nav-links li a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.1rem;
+}
+/*CSS for Navigation Bar ends */
+
+/* CSS for the Profile Page*/
+.card {
+	font-family: 'Heebo';
+	font-weight: 300;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	background: #15142a;
+	background-size: cover;
+	box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	transition: all 0.5s ease;
+}
+
+/* CSS for the profile photo */
+.profile-photo {
+	padding-left: 10%;
+	width: 50%;
+}
+.container {
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 350px;
+	height: 350px;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 50%;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0);
+	transition: background 0.5s ease;
+}
+
+.container:hover .overlay {
+	display: block;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+img {
+	border-radius: 50%;
+	position: absolute;
+	width: 350px;
+	height: 350px;
+	left: 0;
+}
+
+.container:hover .title {
+	top: 90px;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Open Sans';
+	font-size: 16px;
+	width: 170px;
+	height: 50px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	font-weight: 300;
+	border-radius: 70px;
+	color: #fff;
+	background: linear-gradient(to bottom right, #6452e9, #639ff9);
+	box-shadow: 0 13px 26px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.16);
+	position: absolute;
+	text-align: center;
+	opacity: 0;
+	transition: opacity 0.35s ease;
+}
+
+.button a {
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	z-index: 1;
+}
+
+.container:hover .button {
+	opacity: 1;
+}
+/* CSS for the Profile Details */
+.profile {
+	width: 50%;
+}
+
+.profile p {
+	font-family: 'Heebo';
+	letter-spacing: 2px;
+	padding: 8px;
+}
+
+.name {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 2.5rem;
+}
+
+.id,
+.dept,
+.caption {
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 2rem;
+}
+/* CSS for Profile Page ends */
+
+/* CSS for the Quotes display page */
+.quotes-page {
+	font-family: 'Heebo';
+	font-weight: 300;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	height: 100vh;
+	width: 100%;
+	background: #15142a;
+	background-size: cover;
+	box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	transition: all 0.5s ease;
+}
+
+.quotes-page h1 {
+	letter-spacing: 10px;
+	font-family: 'Heebo';
+	font-size: 4rem;
+	color: white;
+	font-weight: 100;
+	margin-top: 8vh;
+	margin-left: 8vh;
+}
+
+.quotes-page h2 {
+	padding-top: 20px;
+	letter-spacing: 5px;
+	font-family: 'Heebo';
+	font-size: 2.5rem;
+	color: white;
+	font-weight: 100;
+	margin-top: 8vh;
+	margin-left: 20vh;
+	margin-right: 30px;
+}
+
+.quotes-page h3 {
+	letter-spacing: 5px;
+	font-family: 'Heebo';
+	font-size: 1.5rem;
+	color: white;
+	font-weight: 100;
+	float: right;
+	margin-right: 30px;
+}
+
+.quotes-page div {
+	width: 100%;
+}
+/* CSS for Quotes Page ends */
+
+/* CSS for Responsive Website */
+@media screen and (max-width: 910px) {
+	/* Code for Navbar and Hamburger Menu */
+	.line {
+		width: 30px;
+		height: 3px;
+		background: white;
+		margin: 5px;
+	}
+
+	nav {
+		position: relative;
+	}
+
+	.search-bar {
+		padding: 2vh;
+		position: absolute;
+		width: 80%;
+	}
+
+	.hamburger {
+		position: absolute;
+		cursor: pointer;
+		right: 5%;
+		top: 50%;
+		transform: translate(-5%, -50%);
+		z-index: 2;
+	}
+
+	.nav-links {
+		position: fixed;
+		background: #004e92;
+		height: 100vh;
+		width: 100%;
+		flex-direction: column;
+		clip-path: circle(100px at 90% 10%);
+		-webkit-clip-path: circle(100px at 90% -10%);
+		transition: all 1s ease-out;
+		pointer-events: none;
+	}
+
+	.nav-links.open {
+		clip-path: circle(100px at 90% 10%);
+		-webkit-clip-path: circle(1200px at 90% -10%);
+		pointer-events: all;
+	}
+
+	.nav-links li {
+		opacity: 0;
+	}
+
+	.nav-links li a {
+		font-size: 1.5rem;
+		letter-spacing: 5px;
+	}
+
+	.nav-links li:nth-child(1) {
+		transition: all 0.5s ease 0.2s;
+	}
+
+	.nav-links li:nth-child(2) {
+		transition: all 0.5s ease 0.4s;
+	}
+
+	.nav-links li:nth-child(3) {
+		transition: all 0.5s ease 0.6s;
+	}
+
+	.nav-links li:nth-child(4) {
+		transition: all 0.5s ease 0.8s;
+	}
+
+	li.fade {
+		opacity: 1;
+	}
+	/* Code for Navbar and Hamburger Menu ends*/
+
+	/* Code for Profile Page */
+	.profile-photo {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		padding-left: 0;
+		width: 100%;
+	}
+
+	.profile-photo img {
+		height: 250px;
+	}
+
+	.profile {
+		margin-top: 20px;
+		text-align: center;
+		width: 100%;
+	}
+
+	.profile p {
+		letter-spacing: 2px;
+		padding: 4px;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 92vh;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.container {
+		height: 250px;
+		width: 250px;
+	}
+
+	img {
+		height: 250px;
+		width: 250px;
+	}
+	.overlay {
+		height: 250px;
+		width: 250px;
+	}
+	.profile-photo {
+		margin-top: 30px;
+	}
+
+	/* CSS for the Profile Content */
+	.name {
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 1.75rem;
+	}
+
+	.id,
+	.dept,
+	.caption {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 1.5rem;
+	}
+
+	/* CSS for the Quotes Page */
+	.quotes-page div {
+		width: 100%;
+	}
+
+	.quotes-page h1 {
+		padding-top: 50px;
+		letter-spacing: 5px;
+		font-size: 2rem;
+		color: white;
+		font-weight: 100;
+		margin-top: 4vh;
+		margin-left: 4vh;
+	}
+
+	.quotes-page h2 {
+		padding-top: 15px;
+		letter-spacing: 2px;
+		font-family: 'Heebo';
+		font-size: 1.5rem;
+		color: white;
+		font-weight: 100;
+		margin-top: 4vh;
+		margin-left: 4vh;
+		margin-right: 2vh;
+	}
+
+	.quotes-page h3 {
+		letter-spacing: 2px;
+		font-family: 'Heebo';
+		font-size: 1.25rem;
+		color: white;
+		font-weight: 100;
+		float: right;
+		margin-right: 2vh;
+	}
+
+	.quotes-page div {
+		width: 100%;
+	}
+	/* CSS for Quotes page ends */
+}

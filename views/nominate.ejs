@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Nominate your Friend</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/assets/stylesheets/nominate.css">
+</head>
+
+<body>
+    <nav class="navbar">
+
+        <div class="search-bar">
+            <input type="text" name="search-box" id="search" placeholder="Search">
+        </div>
+    
+        <div class="links">
+            <ul class="nav-links">
+                <li><a href="/profile/<%= id %>">Profile</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    
+        </nav>
+
+    <section class="landing">
+        <h2>Nominate a Friend to write a Caption in your Yearbook!</h2>
+
+        <form class="card" action="/nominate/<%= id %>" method="POST">
+            <label for="caption">BITS ID:</label>
+            <input class="form-styling" type="text" placeholder="2017B4A80844P" name="user[nominee]">
+            <input type="submit" class="btn" value="Nominate">
+        </form>
+    </section>
+    <script src="assets/scipts/app.js"></script>
+</body>
+</html>

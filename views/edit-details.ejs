@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Edit Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/assets/stylesheets/edit.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="search-bar">
+            <input type="text" name="search-box" id="search" placeholder="Search">
+        </div>
+    
+        <div class="links">
+            <ul class="nav-links">
+                <li><a href="/profile/<%= id %>">Profile</a></li>
+                <li><a href="/<%= id %>/nominate">Nominate a Friend</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    
+        </nav>
+
+    <section class="landing">
+        <h1>Edit Profile</h1>
+        <form class="card" action="/edit/<%= id %>" method="POST">
+            <label for="caption" id="discipline">Discipline:</label>
+            <input class="form-styling" type="text" placeholder="Economics" name="user[disc]">
+            <label for="caption" id="quote">Yearbook Quote:</label>
+            <input class="form-styling" type="text" placeholder="Your quote" name="user[quote]">
+            <input type="submit" class="btn">
+        </form>
+    </section>
+    <script src="assets/scipts/app.js"></script>
+</body>
+</html>
