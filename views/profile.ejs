@@ -18,7 +18,7 @@
         <ul class="nav-links">
             <li><a href="<%= user._id %>/edit">Edit Profile</a></li>
             <li><a href="/<%= user._id %>/nominate">Nominate a Friend</a></li>
-            <li><a href="/">Notifications</a></li>
+            <li><a href="/<%= user._id %>/notifications">Notifications</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </div>
@@ -43,7 +43,9 @@
                 <% if(user.bitsId) { %> 
                     <p class="id"><b>BITS ID:</b> <%= user.bitsId %></p>
                 <% } %>
+                <% if(user.discipline) { %>
                 <p class="dept"><b>Discipline: </b><%= user.discipline %> </p>
+                <% } %>
                 <% if(user.quote) { %>
                 <p class="caption"><b>Yearbook Quote: </b><%= user.quote %></p>
                 <% } %>
@@ -59,18 +61,15 @@
             </div>
         </div>
     </section>
-    <!-- <section class="quotes-page">
+    <section class="quotes-page">
         <h1>What others are saying!</h1>
+        <% let captions = user.captions %>
+        <% for(let i=0; i<captions.length; i++) { %>
         <div">
-            <h2>"Sabse bada chutiya hai."</h2><h3>-Priyanshu Shukla</h3>
+            <h2>"<%= captions[i].caption %>"</h2><h3>-<%= captions[i].name %></h3>
         </div>
-        <div>
-            <h2>"One of the Funniest guys I have ever met. Cracks me up."</h2><h3>-Soham Bhowmick</h3>
-        </div>
-        <div>
-            <h2>"Lawde ka BITSian hai. Hustle kar thoda."</h2><h3>-Puney Chawla</h3>
-        </div>
-    </section> -->
+        <% } %>
+    </section>
     <script src="assets/scipts/app.js"></script>
 </body>
 </html>

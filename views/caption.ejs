@@ -2,9 +2,9 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Nominate your Friend</title>
+    <title>Write a Caption</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="/assets/stylesheets/nominate.css">
+    <link rel="stylesheet" href="/assets/stylesheets/caption.css">
 </head>
 
 <body>
@@ -16,8 +16,9 @@
     
         <div class="links">
             <ul class="nav-links">
-                <li><a href="/profile/<%= id %>">Profile</a></li>
-                <li><a href="<%= id %>/notifications">Notifications</a></li>
+                <li><a href="edit.html">Edit Profile</a></li>
+                <li><a href="nominate.html">Nominate a Friend</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
         </div>
@@ -31,12 +32,12 @@
         </nav>
 
     <section class="landing">
-        <h2>Nominate a Friend to write a Caption in your Yearbook!</h2>
-
-        <form class="card" action="/nominate/<%= id %>" method="POST">
-            <label for="caption">BITS ID:</label>
-            <input class="form-styling" type="text" placeholder="2017B4A80844P" name="user[nominee]">
-            <input type="submit" class="btn" value="Nominate">
+        <h1><%= name %> has nominated you!</h1>
+        <h2>Write a Caption for your Friend!</h2>
+        <form class="card" action="/<%= id %>/<%= name %>/caption" method="POST">
+            <label for="caption">Caption:</label>
+            <input class="form-styling" type="text" placeholder="Caption" name="user[caption]">
+            <input type="submit" class="btn">
         </form>
     </section>
     <script src="assets/scipts/app.js"></script>

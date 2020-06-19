@@ -26,6 +26,9 @@ const User = mongoose.model('User', {
     },
     discipline : {
 
+    },
+    captions : {
+        type : Array
     }
 })
 

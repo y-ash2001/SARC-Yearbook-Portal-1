@@ -14,10 +14,16 @@ const User = mongoose.model('User', {
 
     },
     nominatedby : {
-
+        type : Array
     },
     quote: {
 
+    },
+    discipline : {
+
+    },
+    captions : {
+        type : Array
     }
 })
 

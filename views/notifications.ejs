@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Notifications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/assets/stylesheets/notifications.css">
+</head>
+
+<body>
+    <nav class="navbar">
+
+        <div class="search-bar">
+            <input type="text" name="search-box" id="search" placeholder="Search">
+        </div>
+    
+        <div class="links">
+            <ul class="nav-links">
+                <li><a href="/profile/<%= id %>">Profile</a></li>
+                <li><a href="/<%= id %>/nominate">Nominate a Friend</a></li>
+                <li><a href="<%= id %>/notifications">Notifications</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    
+        </nav>
+
+    <section class="landing">
+        <h1>Notifications</h1>
+        <div class="messages">
+            <% for(let i=0; i<nomineelist.length; i++) { %>
+            <div id="m1">
+                <h2><%= nomineelist[i] %> has nominated you to write a caption in his Yearbook!</h2>
+                <a href="/<%= id %>/<%= nomineelist[i] %>/caption"><button type="button" class="btn">Write a Caption</button></a>
+            </div>
+            <% } %>
+            <!-- <div id="m1"><h2>Puney Chawla has nominated you to write a caption in his Yearbook!</h2>
+                <a href="caption.html"><button type="button" class="btn">Write a Caption</button></a>
+            </div>
+            <div id="m1"><h2>Yash Thakker has nominated you to write a caption in his Yearbook!</h2>
+                <a href="caption.html"><button type="button" class="btn">Write a Caption</button></a>
+            </div>
+            <div id="m1" style="border: 0px;">
+                <button id="back"><a href="profile.html">Back to My Profile</a></button></a>
+            </div> -->
+        </div>
+    </section>
+    <script src="assets/scipts/app.js"></script>
+</body>
+</html>

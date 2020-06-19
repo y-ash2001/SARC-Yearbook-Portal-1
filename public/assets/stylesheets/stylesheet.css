@@ -80,6 +80,7 @@ a{
     height: 20px;
 }
 
+
 @keyframes slide{
     0%{
         background-image: url("../images/image1.JPG");

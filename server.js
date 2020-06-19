@@ -58,6 +58,19 @@ app.get('/:id/nomination', (req, res) => {
   })
 })
 
+app.get('/:id/notifications', (req, res) => {
+  id = req.params.id
+  User.findById(id).then((user) => {
+    const nominees = user.nominatedby
+    res.render('notifications', {id:id, nomineelist:nominees})
+  })
+})
+
+app.get('/:id/:name/caption', (req, res) => {
+  id = req.params.id
+  name = req.params.name
+  res.render('caption', {id:id, name:name})
+})
 // POST REQUESTS
 
 // app.post('/details/:id', (req, res) => {
@@ -87,7 +100,8 @@ app.post('/profile', (req, res) => {
   });
   User.countDocuments({ email : email}).then((count) => {
     if (count<1) {
-      user.save().then(() => {}).catch((error) => {
+      user.save().then(() => {
+      }).catch((error) => {
         console.log('Error!')
       });
     }
@@ -108,16 +122,18 @@ app.post('/nominate/:id', (req, res) => {
   let id = req.params.id
   let nomineeid = req.body.user.nominee
   User.findById(id).then((user) => {
-    bitsid = user.bitsId
+    name = user.name
     User.findOneAndUpdate({bitsId : nomineeid}, {
       $push : { nominatedby : {
         $each : [
-          bitsid
+          name
         ]
       }
       }
     }).then(() => {
       res.redirect('/profile/' + req.params.id)
+    }).catch((e) => {
+      console.log(e)
     })
   })
 })
@@ -133,9 +149,19 @@ app.post('/edit/:id', (req, res) => {
   })
 })
 
-app.post('/quote/:id', (req, res) => {
-  let id = req.params.id
-  User.findByIdAndUpdate(id, {quote : req.body.user.quote}).then((user) => {
-    res.redirect('/')
+app.post('/:id/:name/caption', (req, res) => {
+  caption = req.body.user.caption
+  id = req.params.id
+  name = req.params.name
+  User.findOneAndUpdate({name : name}, {
+    $push : { captions : {
+      $each : [{
+        name : name,
+        caption: caption
+      }
+      ]
+    }}
+  }).then(() => {
+    res.redirect('/profile/' + req.params.id)
   })
 })
