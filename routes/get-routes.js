@@ -54,4 +54,12 @@ router.get('/:id/:name/caption', (req, res) => {
     res.render('caption', {id:id, name:name})
   })
 
+router.get('/:id/search/:bitsid', (req, res) => {
+  let userid = req.params.id
+  let resultid = req.params.bitsid
+  User.findOne({bitsId : resultid}).then((user) => {
+    res.render('public-profile', {user : user, id : userid})
+  })
+})
+
 module.exports = router

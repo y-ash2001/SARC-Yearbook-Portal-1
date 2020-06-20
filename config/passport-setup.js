@@ -24,12 +24,12 @@ passport.use(new GoogleStrategy({
             done(null, currentUser)
         }
         else {
-            const user = new User({
+            let user = new User({
                 name : profile.displayName,
                 imageUrl : profile.photos[0].value,
                 email : profile.emails[0].value
               })
-            user.save.then((newUser) => {
+            user.save().then((newUser) => {
                 done(null, newUser)
             })
         }

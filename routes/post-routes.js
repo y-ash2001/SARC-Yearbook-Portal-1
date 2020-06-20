@@ -79,5 +79,11 @@ router.post('/:id/:name/caption', (req, res) => {
       res.redirect('/profile/' + req.params.id)
     })
   })
+
+router.post('/:id/search', (req, res) => {
+  let id = req.params.id
+  let bitsid = req.body.user.bitsid
+  res.redirect('/' + id + '/search/' + bitsid)
+  })
   
 module.exports = router
