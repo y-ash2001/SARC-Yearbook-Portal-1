@@ -51,6 +51,9 @@ body,html{
 a{
     text-decoration: none;
 }
+a:visited {
+    color: white;
+}
 .google-icon-wrapper {
     width: 42px;
     height: 42px;

@@ -19,7 +19,7 @@
             <li><a href="<%= user._id %>/edit">Edit Profile</a></li>
             <li><a href="/<%= user._id %>/nominate">Nominate a Friend</a></li>
             <li><a href="/<%= user._id %>/notifications">Notifications</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
         </ul>
     </div>
 
@@ -35,7 +35,7 @@
 
         <div class="card">
             <div class="profile-photo">
-                <!-- <img src="<%= user.imageUrl %>" alt=""> -->
+                <img src="<%= user.imageUrl %>" alt="">
             </div>
             <div class="profile">
                 <p class="name"><b>Name: </b><%= user.name %></p>
