@@ -1,6 +1,19 @@
 const router = require('express').Router()
 const bodyParser = require('body-parser');
-const User = require('../mongoose')
+const User = require('../models/user')
+const multer = require('multer')
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination : './public/assets/images/uploads/',
+  filename : function(req, file, cb) {
+    cb(null, file.fieldname+'-'+Date.now()+path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage : storage
+}).single('profileImage')
 
 router.post('/profile', (req, res) => {
     const id = req.body.id;
@@ -79,6 +92,20 @@ router.post('/:id/:name/caption', (req, res) => {
       res.redirect('/profile/' + req.params.id)
     })
   })
+
+router.post('/:id/upload', (req, res) => {
+  let id = req.params.id
+  upload(req, res, (err) => {
+    if (err) {
+      // Display Error
+    }
+    else {
+      User.findByIdAndUpdate(id, {imageUrl : '/assets/images/uploads/' + req.file.filename}).then(() => {
+        res.redirect('/profile/' + id)
+      })
+      }
+    })
+})
 
 router.post('/:id/search', (req, res) => {
   let id = req.params.id

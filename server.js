@@ -1,6 +1,7 @@
 const express = require('express');
 var bodyParser = require('body-parser');
-const User = require('./mongoose')
+require('./db/mongoose')
+const User = require('./models/user')
 const app = express();
 const passport = require('passport')
 const keys = require('./config/keys')

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Upload Profile Image</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/assets/stylesheets/caption.css">
+</head>
+
+<body>
+    <nav class="navbar">
+
+        <div class="search-bar">
+            <form action="/search" method="POST">
+                <input type="text" name="bitsid" id="search" placeholder="Search">
+            </form>
+        </div>    
+        <div class="links">
+            <ul class="nav-links">
+                <li><a href="/profile/<%= id %>">Profile</a></li>
+                <li><a href="/<%= id %>/nominate">Nominate a Friend</a></li>
+                <li><a href="/<%= id %>/notifications">Notifications</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+            </ul>
+        </div>
+    
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    
+        </nav>
+        <section class="landing">
+            <div class="card">
+            <form action="/<%= id %>/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="profileImage">
+                <input type="submit" class="btn">
+            </form>
+            </div>

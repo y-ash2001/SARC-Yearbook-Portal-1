@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const bodyParser = require('body-parser');
-const User = require('../mongoose')
+const User = require('../models/user')
 
 router.get('/profile/:id', (req, res) => {
     const _id = req.params.id
@@ -60,6 +60,11 @@ router.get('/:id/search/:bitsid', (req, res) => {
   User.findOne({bitsId : resultid}).then((user) => {
     res.render('public-profile', {user : user, id : userid})
   })
+})
+
+router.get('/:id/upload', (req, res) => {
+  let id = req.params.id
+  res.render('upload', {id : id})
 })
 
 module.exports = router
