@@ -52,24 +52,24 @@ router.post('/nominate/:id', (req, res) => {
       name = user.name
       User.findOne({bitsId : nomineeid}).then((user) => {
         if(user.nominatedby.includes(name)) {
-          return 
+          res.redirect('/profile/' + req.params.id) 
         }
         else {
-          user.update({
-            $push : { captions : {
+          User.findOneAndUpdate({bitsId : nomineeid}, {
+            $push : { nominatedby : {
               $each : [
                 name
               ]
             }}
-          })
-        }
+          }).then(() => {
+          res.redirect('/profile/' + req.params.id)
+          }).catch((e) => {
+          console.log(e)
       })
-      }).then(() => {
-        res.redirect('/profile/' + req.params.id)
-      }).catch((e) => {
-        console.log(e)
-      })
-    })
+    }
+  })
+})
+})
   
 router.post('/edit/:id', (req, res) => {
     disc = req.body.user.disc

@@ -74,7 +74,7 @@
         <h1>What others are saying!</h1>
         <% let captions = user.captions %>
         <% for(let i=0; i<captions.length; i++) { %>
-        <div">
+        <div class="speech-bubble">
             <h2>"<%= captions[i].caption %>"</h2><h3>-<%= captions[i].name %></h3>
         </div>
         <% } %>
