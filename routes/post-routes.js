@@ -50,20 +50,26 @@ router.post('/nominate/:id', (req, res) => {
     let nomineeid = req.body.user.nominee
     User.findById(id).then((user) => {
       name = user.name
-      User.findOneAndUpdate({bitsId : nomineeid}, {
-        $push : { nominatedby : {
-          $each : [
-            name
-          ]
+      User.findOne({bitsId : nomineeid}).then((user) => {
+        if(user.nominatedby.includes(name)) {
+          return 
         }
+        else {
+          user.update({
+            $push : { captions : {
+              $each : [
+                name
+              ]
+            }}
+          })
         }
+      })
       }).then(() => {
         res.redirect('/profile/' + req.params.id)
       }).catch((e) => {
         console.log(e)
       })
     })
-  })
   
 router.post('/edit/:id', (req, res) => {
     disc = req.body.user.disc
@@ -80,6 +86,10 @@ router.post('/:id/:name/caption', (req, res) => {
     caption = req.body.user.caption
     id = req.params.id
     name = req.params.name
+    if (caption === '') {
+      res.render('caption', {msg : 'Please enter a valid caption!'})
+    }
+    else {
     User.findOneAndUpdate({name : name}, {
       $push : { captions : {
         $each : [{
@@ -91,6 +101,7 @@ router.post('/:id/:name/caption', (req, res) => {
     }).then(() => {
       res.redirect('/profile/' + req.params.id)
     })
+  }
   })
 
 router.post('/:id/upload', (req, res) => {
@@ -100,9 +111,14 @@ router.post('/:id/upload', (req, res) => {
       // Display Error
     }
     else {
-      User.findByIdAndUpdate(id, {imageUrl : '/assets/images/uploads/' + req.file.filename}).then(() => {
+      if (typeof req.file==='undefined') {
+        res.render('upload', {msg : 'Please upload an image!', id:id})
+      }
+      else {
+        User.findByIdAndUpdate(id, {imageUrl : '/assets/images/uploads/' + req.file.filename}).then(() => {
         res.redirect('/profile/' + id)
       })
+    }
       }
     })
 })

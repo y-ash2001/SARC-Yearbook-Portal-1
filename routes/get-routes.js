@@ -67,4 +67,8 @@ router.get('/:id/upload', (req, res) => {
   res.render('upload', {id : id})
 })
 
+router.get('/:id/developers', (req, res) => {
+  res.render('developers', {id : req.params.id})
+})
+
 module.exports = router
