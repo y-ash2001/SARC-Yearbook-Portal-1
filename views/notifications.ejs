@@ -38,8 +38,8 @@
         <div class="messages">
             <% for(let i=0; i<nomineelist.length; i++) { %>
             <div id="m1">
-                <h2><%= nomineelist[i] %> has nominated you to write a caption in his Yearbook!</h2>
-                <a href="/<%= id %>/<%= nomineelist[i] %>/caption"><button type="button" class="btn">Write a Caption</button></a>
+                <h2><%= nomineelist[i].name %> has nominated you to write a caption in his Yearbook!</h2>
+                <a href="/<%= id %>/<%= nomineelist[i].id %>/caption"><button type="button" class="btn">Write a Caption</button></a>
             </div>
             <% } %>
             <!-- <div id="m1"><h2>Puney Chawla has nominated you to write a caption in his Yearbook!</h2>

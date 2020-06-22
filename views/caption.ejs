@@ -38,7 +38,7 @@
         <% if (typeof msg!=="undefined") { %>
             <h3><%= msg %></h3>
         <% } %>
-        <form class="card" action="/<%= id %>/<%= name %>/caption" method="POST">
+        <form class="card" action="/<%= id %>/<%= id2 %>/caption" method="POST">
             <label for="caption">Caption:</label>
             <input class="form-styling" type="text" placeholder="Caption" name="user[caption]">
             <input type="submit" class="btn">

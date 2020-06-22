@@ -35,7 +35,9 @@
 
     <section class="landing">
         <h2>Nominate a Friend to write a Caption in your Yearbook!</h2>
-
+        <% if(typeof msg !== 'undefined') { %>
+            <h3><%= msg %></h3>
+        <% } %>
         <form class="card" action="/nominate/<%= id %>" method="POST">
             <label for="caption">BITS ID:</label>
             <input class="form-styling" type="text" placeholder="2017B4A80844P" name="user[nominee]">

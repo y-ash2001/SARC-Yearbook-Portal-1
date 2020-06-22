@@ -48,10 +48,13 @@ router.get('/:id/notifications', (req, res) => {
     })
   })
   
-router.get('/:id/:name/caption', (req, res) => {
-    id = req.params.id
-    name = req.params.name
-    res.render('caption', {id:id, name:name})
+router.get('/:id1/:id2/caption', (req, res) => {
+    id1 = req.params.id1
+    id2 = req.params.id2
+    User.findById(id2).then((user) => {
+      name = user.name
+      res.render('caption', {id:id1, name:name, id2:id2})
+    })
   })
 
 router.get('/:id/search/:bitsid', (req, res) => {

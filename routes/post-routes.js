@@ -49,26 +49,33 @@ router.post('/nominate/:id', (req, res) => {
     let id = req.params.id
     let nomineeid = req.body.user.nominee
     User.findById(id).then((user) => {
+      nominatorid = user.id
       name = user.name
       User.findOne({bitsId : nomineeid}).then((user) => {
-        if(user.nominatedby.includes(name)) {
-          res.redirect('/profile/' + req.params.id) 
+        if (user) {
+          if(user.nominatedby.some(e => e.id === nominatorid)) {
+            res.redirect('/profile/' + req.params.id) 
+          }
+          else {
+            User.findOneAndUpdate({bitsId : nomineeid}, {
+              $push : { nominatedby : {
+                $each : [{
+                  name : name,
+                  id : nominatorid
+                }]
+              }}
+            }).then(() => {
+            res.redirect('/profile/' + req.params.id)
+            }).catch((e) => {
+            console.log(e)
+        })
         }
-        else {
-          User.findOneAndUpdate({bitsId : nomineeid}, {
-            $push : { nominatedby : {
-              $each : [
-                name
-              ]
-            }}
-          }).then(() => {
-          res.redirect('/profile/' + req.params.id)
-          }).catch((e) => {
-          console.log(e)
-      })
-    }
+      }
+      else {
+        res.render('nominate', {id : id, msg : 'This user does not exist. Enter a different ID'})
+      }
+    })
   })
-})
 })
   
 router.post('/edit/:id', (req, res) => {
@@ -82,25 +89,27 @@ router.post('/edit/:id', (req, res) => {
     })
   })
   
-router.post('/:id/:name/caption', (req, res) => {
+router.post('/:id1/:id2/caption', (req, res) => {
     caption = req.body.user.caption
-    id = req.params.id
-    name = req.params.name
+    id1 = req.params.id1
+    id2 = req.params.id2
     if (caption === '') {
       res.render('caption', {msg : 'Please enter a valid caption!'})
     }
     else {
-    User.findOneAndUpdate({name : name}, {
-      $push : { captions : {
-        $each : [{
-          name : name,
-          caption: caption
-        }
-        ]
-      }}
-    }).then(() => {
-      res.redirect('/profile/' + req.params.id)
-    })
+      User.findById(id1).then((user) => {
+        name = user.name
+        User.findByIdAndUpdate(id2, {
+          $push : { captions : {
+            $each : [{
+              name : name,
+              caption : caption
+            }]
+          }}
+        }).then(() => {
+          res.redirect('/profile/' + id1)
+        })
+      })
   }
   })
 
