@@ -5,8 +5,19 @@ const User = require('./models/user')
 const app = express();
 const passport = require('passport')
 const keys = require('./config/keys')
+const cookieParser = require('cookie-parser')
+const flash = require('connect-flash')
 const cookieSession = require('cookie-session')
 const port = 3000;
+
+app.use(cookieParser())
+app.use(cookieSession(({
+  secret : keys.session.cookieKey,
+  cookie : {maxAge : 60000},
+  resave : false,
+  saveUninitialized : false
+})))
+app.use(flash())
 
 app.use(cookieSession({
   maxAge : 24 * 60 * 60 * 1000,

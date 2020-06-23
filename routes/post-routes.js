@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const User = require('../models/user')
 const multer = require('multer')
 const path = require('path');
-
+const transporter = require('../config/mail')
+const keys = require('../config/keys')
 const storage = multer.diskStorage({
   destination : './public/assets/images/uploads/',
   filename : function(req, file, cb) {
@@ -38,7 +39,8 @@ router.post('/profile', (req, res) => {
 router.post('/addid/:id', (req, res) => {
     let _id = req.params.id
     let bitsid = req.body.user.bitsid
-    User.findByIdAndUpdate(_id, {bitsId : bitsid}).then(() => {
+    let quote = req.body.user.quote
+    User.findByIdAndUpdate(_id, {bitsId : bitsid, quote : quote}).then(() => {
       res.redirect('/profile/' + req.params.id)
     }).catch((e) => {
       console.log(e)
@@ -57,6 +59,7 @@ router.post('/nominate/:id', (req, res) => {
             res.redirect('/profile/' + req.params.id) 
           }
           else {
+            const email = user.email
             User.findOneAndUpdate({bitsId : nomineeid}, {
               $push : { nominatedby : {
                 $each : [{
@@ -65,7 +68,20 @@ router.post('/nominate/:id', (req, res) => {
                 }]
               }}
             }).then(() => {
-            res.redirect('/profile/' + req.params.id)
+              let mailOptions = {
+                from : keys.email.user,
+                to : email,
+                subject : 'Online Yearbook',
+                text : "You've been nominated to write a caption! Login at <> to know more."
+              }
+              transporter.sendMail(mailOptions, (err, data) => {
+                if(err) {
+                  console.log(err)
+                }
+                else {
+                  res.redirect('/profile/' + req.params.id)
+                }
+              })
             }).catch((e) => {
             console.log(e)
         })
@@ -79,13 +95,26 @@ router.post('/nominate/:id', (req, res) => {
 })
   
 router.post('/edit/:id', (req, res) => {
+    id = req.params.id
     disc = req.body.user.disc
     quote = req.body.user.quote
-    id = req.params.id
-    User.findByIdAndUpdate(id, {discipline : disc, quote : quote}).then(() => {
-      res.redirect('/profile/' + req.params.id)
-    }).catch((e) => {
-      console.log(e)
+    bitsid = req.body.user.bitsid
+    User.findById(id).then((user) => {
+      if (disc==='') disc = user.discipline
+      else disc = req.body.user.disc
+      if (quote==='') quote = user.quote
+      else quote = req.body. user.quote
+      if (bitsid==='') bitsid = user.bitsId
+      else bitsid = req.body.user.bitsid
+      User.findByIdAndUpdate(id, {
+        discipline : disc, 
+        quote : quote, 
+        bitsId : bitsid
+      }).then(() => {
+        res.redirect('/profile/' + req.params.id)
+      }).catch((e) => {
+        console.log(e)
+      })
     })
   })
   
@@ -121,7 +150,8 @@ router.post('/:id/upload', (req, res) => {
     }
     else {
       if (typeof req.file==='undefined') {
-        res.render('upload', {msg : 'Please upload an image!', id:id})
+        req.flash('error', 'Please upload an image!')
+        res.render('upload', {id:id, error: req.flash('error')})
       }
       else {
         User.findByIdAndUpdate(id, {imageUrl : '/assets/images/uploads/' + req.file.filename}).then(() => {

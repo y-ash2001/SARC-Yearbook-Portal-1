@@ -100,7 +100,7 @@ nav {
 
 .modal {
 	position: fixed;
-	top: 50%;
+	top: 35%;
 	left: 50%;
 	width: 400px;
 	min-height: 300px;
