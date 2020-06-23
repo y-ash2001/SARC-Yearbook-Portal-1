@@ -100,10 +100,10 @@ nav {
 
 .modal {
 	position: fixed;
-	top: 50%;
+	top: 35%;
 	left: 50%;
-	width: 400px;
-	height: 300px;
+	width: 450px;
+	height: 450px;
 	margin-left: -200px;
 	margin-top: -150px;
 	background: #15142a;

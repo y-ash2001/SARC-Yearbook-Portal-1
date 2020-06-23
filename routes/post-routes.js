@@ -39,7 +39,8 @@ router.post('/profile', (req, res) => {
 router.post('/addid/:id', (req, res) => {
     let _id = req.params.id
     let bitsid = req.body.user.bitsid
-    User.findByIdAndUpdate(_id, {bitsId : bitsid}).then(() => {
+    let quote = req.body.user.quote
+    User.findByIdAndUpdate(_id, {bitsId : bitsid, quote : quote}).then(() => {
       res.redirect('/profile/' + req.params.id)
     }).catch((e) => {
       console.log(e)
@@ -94,13 +95,26 @@ router.post('/nominate/:id', (req, res) => {
 })
   
 router.post('/edit/:id', (req, res) => {
+    id = req.params.id
     disc = req.body.user.disc
     quote = req.body.user.quote
-    id = req.params.id
-    User.findByIdAndUpdate(id, {discipline : disc, quote : quote}).then(() => {
-      res.redirect('/profile/' + req.params.id)
-    }).catch((e) => {
-      console.log(e)
+    bitsid = req.body.user.bitsid
+    User.findById(id).then((user) => {
+      if (disc==='') disc = user.discipline
+      else disc = req.body.user.disc
+      if (quote==='') quote = user.quote
+      else quote = req.body. user.quote
+      if (bitsid==='') bitsid = user.bitsId
+      else bitsid = req.body.user.bitsid
+      User.findByIdAndUpdate(id, {
+        discipline : disc, 
+        quote : quote, 
+        bitsId : bitsid
+      }).then(() => {
+        res.redirect('/profile/' + req.params.id)
+      }).catch((e) => {
+        console.log(e)
+      })
     })
   })
   

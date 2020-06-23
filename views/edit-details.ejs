@@ -35,6 +35,8 @@
     <section class="landing">
         <h1>Edit Profile</h1>
         <form class="card" action="/edit/<%= id %>" method="POST">
+            <label for="caption" id="discipline">BITS ID:</label>
+            <input class="form-styling" type="text" placeholder="2019A3PS0245P" name="user[bitsid]">
             <label for="caption" id="discipline">Discipline:</label>
             <input class="form-styling" type="text" placeholder="Economics" name="user[disc]">
             <label for="caption" id="quote">Yearbook Quote:</label>
