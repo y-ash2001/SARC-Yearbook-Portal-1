@@ -695,6 +695,17 @@ footer {
 	}
 	/* CSS for Quotes page ends */
 }
+.m-fadeOut {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 300ms linear 300ms, opacity 300ms;
+}
+
+.m-fadeIn {
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 300ms linear 300ms, opacity 300ms;
+}
 @media screen and (max-width: 430px) {
 	.modal {
 		width: 90%;
