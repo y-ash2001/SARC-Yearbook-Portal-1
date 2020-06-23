@@ -102,8 +102,9 @@ nav {
 	position: fixed;
 	top: 35%;
 	left: 50%;
-	width: 450px;
-	height: 450px;
+	width: 400px;
+	min-height: 300px;
+	height: auto;
 	margin-left: -200px;
 	margin-top: -150px;
 	background: #15142a;
@@ -185,6 +186,13 @@ label {
 	color: #fff;
 	background: linear-gradient(to bottom right, #5e5aec, #3f9efc);
 	box-shadow: 0 13px 26px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.16);
+}
+
+#photo-modal {
+	display: none;
+}
+#upload-modal {
+	display: none;
 }
 /* CSS for the modal ends */
 
@@ -281,17 +289,6 @@ label {
 	opacity: 1;
 }
 
-.m-fadeOut {
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 300ms linear 300ms, opacity 300ms;
-}
-
-.m-fadeIn {
-	visibility: visible;
-	opacity: 1;
-	transition: visibility 300ms linear 300ms, opacity 300ms;
-}
 /* CSS for the Profile Details */
 .profile {
 	width: 50%;
@@ -515,6 +512,18 @@ footer {
 	transition: opacity 0.35s ease;
 	margin-bottom: 10px;
 }
+
+.m-fadeOut {
+	display: none;
+	opacity: 0;
+	transition: display 300ms linear 300ms, opacity 300ms;
+}
+
+.m-fadeIn {
+	display: flex;
+	opacity: 1;
+	transition: display 300ms linear 300ms, opacity 300ms;
+}
 /* CSS for Quotes Page ends */
 
 /* CSS for Responsive Website */
@@ -694,17 +703,6 @@ footer {
 		margin-right: 2vh;
 	}
 	/* CSS for Quotes page ends */
-}
-.m-fadeOut {
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 300ms linear 300ms, opacity 300ms;
-}
-
-.m-fadeIn {
-	visibility: visible;
-	opacity: 1;
-	transition: visibility 300ms linear 300ms, opacity 300ms;
 }
 @media screen and (max-width: 430px) {
 	.modal {
