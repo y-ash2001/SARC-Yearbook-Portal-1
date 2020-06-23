@@ -33,9 +33,9 @@
         </nav>
         <section class="landing">
             <div class="card">
-                <% if (typeof msg!=='undefined') {%>
-                    <h2><%= msg %></h2>
-                <%  }  %>
+                <% if (typeof error!=='undefined') { %>
+                <h3><%= error %></h3>
+                <% } %>
             <form action="/<%= id %>/upload" method="POST" enctype="multipart/form-data">
                 <input type="file" id="file" name="profileImage"/>
                 <input type="submit" class="btn">

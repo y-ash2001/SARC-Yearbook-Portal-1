@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const User = require('../models/user')
 const multer = require('multer')
 const path = require('path');
-
+const transporter = require('../config/mail')
+const keys = require('../config/keys')
 const storage = multer.diskStorage({
   destination : './public/assets/images/uploads/',
   filename : function(req, file, cb) {
@@ -57,6 +58,7 @@ router.post('/nominate/:id', (req, res) => {
             res.redirect('/profile/' + req.params.id) 
           }
           else {
+            const email = user.email
             User.findOneAndUpdate({bitsId : nomineeid}, {
               $push : { nominatedby : {
                 $each : [{
@@ -65,7 +67,20 @@ router.post('/nominate/:id', (req, res) => {
                 }]
               }}
             }).then(() => {
-            res.redirect('/profile/' + req.params.id)
+              let mailOptions = {
+                from : keys.email.user,
+                to : email,
+                subject : 'Online Yearbook',
+                text : "You've been nominated to write a caption! Login at <> to know more."
+              }
+              transporter.sendMail(mailOptions, (err, data) => {
+                if(err) {
+                  console.log(err)
+                }
+                else {
+                  res.redirect('/profile/' + req.params.id)
+                }
+              })
             }).catch((e) => {
             console.log(e)
         })
@@ -121,7 +136,8 @@ router.post('/:id/upload', (req, res) => {
     }
     else {
       if (typeof req.file==='undefined') {
-        res.render('upload', {msg : 'Please upload an image!', id:id})
+        req.flash('error', 'Please upload an image!')
+        res.render('upload', {id:id, error: req.flash('error')})
       }
       else {
         User.findByIdAndUpdate(id, {imageUrl : '/assets/images/uploads/' + req.file.filename}).then(() => {
