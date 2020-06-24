@@ -128,19 +128,34 @@ router.post('/:id1/:id2/caption', (req, res) => {
     else {
       User.findById(id1).then((user) => {
         name = user.name
-        User.findByIdAndUpdate(id2, {
-          $push : { captions : {
-            $each : [{
-              name : name,
-              caption : caption
-            }]
-          }}
-        }).then(() => {
-          res.redirect('/profile/' + id1)
+        User.findById(id2).then((user2) => {
+          let captions = user2.captions
+          if(captions.find(o => o.name ===name )) {
+            for(let i=0; i<captions.length; i++) {
+              if(captions[i].name===name) {
+                captions[i].caption=caption
+              }
+              user2.updateOne({captions : captions}).then(() => {
+                res.redirect('/profile/' + id1)
+              })
+            }
+          }
+          else {
+            user2.updateOne({
+              $push : { captions : {
+                $each : [{
+                  name : name,
+                  caption : caption
+                }]
+              }}
+            }).then(() => {
+              res.redirect('/profile/' + id1)
+            })
+          }
         })
-      })
-  }
-  })
+        })
+      }
+    })
 
 router.post('/:id/upload', (req, res) => {
   let id = req.params.id
