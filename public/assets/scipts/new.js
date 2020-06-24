@@ -24,15 +24,8 @@ close_button.onclick = function () {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-	if (event.target == modal || event.target == mask) {
+	if (event.target == mask) {
 		modal.style.display = 'none';
 		mask.style.display = 'none';
-	}
-};
-
-window.onclick = function (event) {
-	if (event.target == modal_mask || event.target == photo_modal) {
-		modal_mask.style.display = 'none';
-		photo_modal.style.display = 'none';
 	}
 };

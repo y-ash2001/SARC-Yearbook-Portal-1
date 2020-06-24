@@ -100,7 +100,7 @@ nav {
 
 .modal {
 	position: fixed;
-	top: 35%;
+	top: 50%;
 	left: 50%;
 	width: 400px;
 	min-height: 300px;
@@ -289,6 +289,17 @@ label {
 	opacity: 1;
 }
 
+.m-fadeOut {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 300ms linear 300ms, opacity 300ms;
+}
+
+.m-fadeIn {
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 300ms linear 300ms, opacity 300ms;
+}
 /* CSS for the Profile Details */
 .profile {
 	width: 50%;
@@ -511,18 +522,6 @@ footer {
 	text-align: center;
 	transition: opacity 0.35s ease;
 	margin-bottom: 10px;
-}
-
-.m-fadeOut {
-	display: none;
-	opacity: 0;
-	transition: display 300ms linear 300ms, opacity 300ms;
-}
-
-.m-fadeIn {
-	display: flex;
-	opacity: 1;
-	transition: display 300ms linear 300ms, opacity 300ms;
 }
 /* CSS for Quotes Page ends */
 

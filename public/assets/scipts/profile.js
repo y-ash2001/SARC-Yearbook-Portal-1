@@ -1,6 +1,6 @@
 var x = document.getElementById('glitch');
 function toggle() {
-	if (x.style.visibility === 'hidden') {
+	if (x.style.display === 'none') {
 		x.classList.toggle('m-fadeIn');
 		console.log(2);
 	} else {
