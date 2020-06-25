@@ -31,8 +31,12 @@
         </div>
     
         </nav>
-        <% if (typeof msg!=="undefined") { %>
-            <div class="error-msg"><%= msg %></div>
+        <% if (typeof error!=="undefined") { %>
+            <div class="error-msg"><%= error %></div>
+        <% } %>
+        
+        <% if (typeof success!=="undefined") { %>
+            <div class="success-msg"><%= success %></div>
         <% } %>
     <section class="landing">
         <h1><%= name %> has nominated you!</h1>

@@ -53,7 +53,7 @@ router.post('/nominate/:id', async (req, res) => {
     const user2 = await User.findOne({bitsId : nomineeid})
     if (user2) {
       if (user2.nominatedby.some(e => e.id === nominatorid)) {
-        res.redirect('/profile/' + req.params.id)
+        res.render('nominate', {id : id, success : 'User has already been nominated!'})
       }
       else {
         const email = user2.email
@@ -77,12 +77,12 @@ router.post('/nominate/:id', async (req, res) => {
             console.log(err)
           }
           else {
-            res.render('nominate', {id : id, msg : 'User nominated successfully!'})
+            res.render('nominate', {id : id, success : 'User nominated successfully!'})
           }
       })
     }}
     else {
-        res.render('nominate', {id : id, msg : 'This user does not exist. Enter a different ID'})
+        res.render('nominate', {id : id, error : 'This user does not exist! Enter a different ID.'})
       }
     })
 
@@ -103,7 +103,7 @@ router.post('/edit/:id', async (req, res) => {
     quote : quote, 
     bitsId : bitsid
     })
-    res.redirect('/profile/' + req.params.id)
+    res.render('edit-details', {id : req.params.id, msg: 'Details updated successfully!'})
   })
   
 router.post('/:id1/:id2/caption', async (req, res) => {
@@ -111,7 +111,7 @@ router.post('/:id1/:id2/caption', async (req, res) => {
     id1 = req.params.id1
     id2 = req.params.id2
     if (caption === '') {
-      res.render('caption', {msg : 'Please enter a valid caption!'})
+      res.render('caption', {error : 'Please enter a valid caption!'})
     }
     else {
       const user1 = await User.findById(id1)
@@ -124,7 +124,7 @@ router.post('/:id1/:id2/caption', async (req, res) => {
           captions[i].caption=caption
         }}
         await user2.updateOne({captions : captions})
-        res.redirect('/profile/' + id1)
+        res.render('caption', {success : 'Caption added successfully!'})
       }
       else {
         await user2.updateOne({
@@ -134,7 +134,7 @@ router.post('/:id1/:id2/caption', async (req, res) => {
               caption : caption
           }]
         }}})
-      res.redirect('/profile/' + id1)
+        res.render('caption', {success : 'Caption added successfully!'})
       }
     }})
 

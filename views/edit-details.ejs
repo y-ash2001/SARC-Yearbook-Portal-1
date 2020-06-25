@@ -30,8 +30,10 @@
             <div class="line"></div>
         </div>
     
-        </nav>
-
+    </nav>
+    <% if (typeof msg!=="undefined") { %>
+        <div class="success-msg"><%= msg %></div>
+    <% } %>
     <section class="landing">
         <h1>Edit Profile</h1>
         <form class="card" action="/edit/<%= id %>" method="POST">
