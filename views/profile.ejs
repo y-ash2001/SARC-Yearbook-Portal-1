@@ -18,7 +18,7 @@
 
     <div class="links">
         <ul class="nav-links">
-            <li><a href="<%= user._id %>/edit">Edit Profile</a></li>
+            <li><a href="/profile/<%= user._id %>/edit">Edit Profile</a></li>
             <li><a href="/<%= user._id %>/nominate">Nominate a Friend</a></li>
             <li><a href="/<%= user._id %>/notifications">Notifications</a></li>
             <li><a href="/auth/logout">Logout</a></li>
@@ -32,9 +32,10 @@
     </div>
 
     </nav>
-
+    <% if(typeof msg!=='undefined') { %>
+        <div class="error-msg"><%=msg%></div>
+    <% } %>
     <section class="landing">
-
         <% if(!user.bitsId) { %>
         <div class="mask" role="dialog" id="modal-mask"></div>
         <div class="modal" role="alert" id="modal-main">
@@ -56,7 +57,6 @@
                 <button type="button" class="btn">Submit</button>
             </form>
         </div>
-
         <div class="card">
             <div class="profile-photo">
                 <div class="container" id="glitch">

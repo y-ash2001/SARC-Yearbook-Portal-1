@@ -31,13 +31,12 @@
         </div>
     
         </nav>
-
+        <% if (typeof msg!=="undefined") { %>
+            <div class="error-msg"><%= msg %></div>
+        <% } %>
     <section class="landing">
         <h1><%= name %> has nominated you!</h1>
         <h2>Write a Caption for your Friend!</h2>
-        <% if (typeof msg!=="undefined") { %>
-            <h3><%= msg %></h3>
-        <% } %>
         <form class="card" action="/<%= id %>/<%= id2 %>/caption" method="POST">
             <label for="caption">Caption:</label>
             <input class="form-styling" type="text" placeholder="Caption" name="user[caption]">

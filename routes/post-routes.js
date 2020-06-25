@@ -34,91 +34,79 @@ router.post('/profile', (req, res) => {
         });
       }
     })
-  });
+})
   
-router.post('/addid/:id', (req, res) => {
+router.post('/addid/:id', async (req, res) => {
     let _id = req.params.id
     let bitsid = req.body.user.bitsid
     let quote = req.body.user.quote
-    User.findByIdAndUpdate(_id, {bitsId : bitsid, quote : quote}).then(() => {
-      res.redirect('/profile/' + req.params.id)
-    }).catch((e) => {
-      console.log(e)
-    })
+    await User.findByIdAndUpdate(_id, {bitsId : bitsid, quote : quote})
+    res.redirect('/profile/' + req.params.id)
   })
   
-router.post('/nominate/:id', (req, res) => {
+router.post('/nominate/:id', async (req, res) => {
     let id = req.params.id
     let nomineeid = req.body.user.nominee
-    User.findById(id).then((user) => {
-      nominatorid = user.id
-      name = user.name
-      User.findOne({bitsId : nomineeid}).then((user) => {
-        if (user) {
-          if(user.nominatedby.some(e => e.id === nominatorid)) {
-            res.redirect('/profile/' + req.params.id) 
-          }
-          else {
-            const email = user.email
-            User.findOneAndUpdate({bitsId : nomineeid}, {
-              $push : { nominatedby : {
-                $each : [{
-                  name : name,
-                  id : nominatorid
-                }]
-              }}
-            }).then(() => {
-              let mailOptions = {
-                from : keys.email.user,
-                to : email,
-                subject : 'Online Yearbook',
-                text : "You've been nominated to write a caption! Login at <> to know more."
-              }
-              transporter.sendMail(mailOptions, (err, data) => {
-                if(err) {
-                  console.log(err)
-                }
-                else {
-                  res.redirect('/profile/' + req.params.id)
-                }
-              })
-            }).catch((e) => {
-            console.log(e)
-        })
-        }
+    const user1 = await User.findById(id)
+    nominatorid = user1.id
+    name = user1.name
+    const user2 = await User.findOne({bitsId : nomineeid})
+    if (user2) {
+      if (user2.nominatedby.some(e => e.id === nominatorid)) {
+        res.redirect('/profile/' + req.params.id)
       }
       else {
+        const email = user2.email
+        await user2.updateOne({
+          $push : { nominatedby : {
+            $each : [{
+              name : name,
+              id : nominatorid
+            }]
+        
+        }}
+        })
+        let mailOptions = {
+          from : keys.email.user,
+          to : email,
+          subject : 'Online Yearbook',
+          text : "You've been nominated to write a caption! Login at <> to know more."
+        }
+        transporter.sendMail(mailOptions, (err, data) => {
+          if(err) {
+            console.log(err)
+          }
+          else {
+            res.render('nominate', {id : id, msg : 'User nominated successfully!'})
+          }
+      })
+    }}
+    else {
         res.render('nominate', {id : id, msg : 'This user does not exist. Enter a different ID'})
       }
     })
-  })
-})
-  
-router.post('/edit/:id', (req, res) => {
+
+router.post('/edit/:id', async (req, res) => {
     id = req.params.id
     disc = req.body.user.disc
     quote = req.body.user.quote
     bitsid = req.body.user.bitsid
-    User.findById(id).then((user) => {
-      if (disc==='') disc = user.discipline
-      else disc = req.body.user.disc
-      if (quote==='') quote = user.quote
-      else quote = req.body. user.quote
-      if (bitsid==='') bitsid = user.bitsId
-      else bitsid = req.body.user.bitsid
-      User.findByIdAndUpdate(id, {
-        discipline : disc, 
-        quote : quote, 
-        bitsId : bitsid
-      }).then(() => {
-        res.redirect('/profile/' + req.params.id)
-      }).catch((e) => {
-        console.log(e)
-      })
+    const user = await User.findById(id)
+    if (disc==='') disc = user.discipline
+    else disc = req.body.user.disc
+    if (quote==='') quote = user.quote
+    else quote = req.body. user.quote
+    if (bitsid==='') bitsid = user.bitsId
+    else bitsid = req.body.user.bitsid
+    await User.findByIdAndUpdate(id, {
+    discipline : disc, 
+    quote : quote, 
+    bitsId : bitsid
     })
+    res.redirect('/profile/' + req.params.id)
   })
   
-router.post('/:id1/:id2/caption', (req, res) => {
+router.post('/:id1/:id2/caption', async (req, res) => {
     caption = req.body.user.caption
     id1 = req.params.id1
     id2 = req.params.id2
@@ -126,36 +114,29 @@ router.post('/:id1/:id2/caption', (req, res) => {
       res.render('caption', {msg : 'Please enter a valid caption!'})
     }
     else {
-      User.findById(id1).then((user) => {
-        name = user.name
-        User.findById(id2).then((user2) => {
-          let captions = user2.captions
-          if(captions.find(o => o.name ===name )) {
-            for(let i=0; i<captions.length; i++) {
-              if(captions[i].name===name) {
-                captions[i].caption=caption
-              }
-              user2.updateOne({captions : captions}).then(() => {
-                res.redirect('/profile/' + id1)
-              })
-            }
-          }
-          else {
-            user2.updateOne({
-              $push : { captions : {
-                $each : [{
-                  name : name,
-                  caption : caption
-                }]
-              }}
-            }).then(() => {
-              res.redirect('/profile/' + id1)
-            })
-          }
-        })
-        })
+      const user1 = await User.findById(id1)
+      name = user1.name
+      const user2 = await User.findById(id2)
+      let captions = user2.captions
+      if(captions.find(o => o.name ===name )) {
+        for(let i=0; i<captions.length; i++) {
+          if(captions[i].name===name) {
+          captions[i].caption=caption
+        }}
+        await user2.updateOne({captions : captions})
+        res.redirect('/profile/' + id1)
       }
-    })
+      else {
+        await user2.updateOne({
+           $push : { captions : {
+            $each : [{
+              name : name,
+              caption : caption
+          }]
+        }}})
+      res.redirect('/profile/' + id1)
+      }
+    }})
 
 router.post('/:id/upload', (req, res) => {
   let id = req.params.id
@@ -165,8 +146,7 @@ router.post('/:id/upload', (req, res) => {
     }
     else {
       if (typeof req.file==='undefined') {
-        req.flash('error', 'Please upload an image!')
-        res.render('upload', {id:id, error: req.flash('error')})
+        res.render('upload', {id:id, msg : 'Please upload a valid image!'})
       }
       else {
         User.findByIdAndUpdate(id, {imageUrl : '/assets/images/uploads/' + req.file.filename}).then(() => {
@@ -177,10 +157,14 @@ router.post('/:id/upload', (req, res) => {
     })
 })
 
-router.post('/:id/search', (req, res) => {
+router.post('/:id/search', async (req, res) => {
   let id = req.params.id
   let bitsid = req.body.user.bitsid
-  res.redirect('/' + id + '/search/' + bitsid)
-  })
+  let user = await User.findOne({bitsId : bitsid})
+  if (user) res.redirect('/' + id + '/search/' + bitsid)
+  else {
+    let user = await User.findById(id) 
+    res.render('profile', {user : user, msg : 'User not found!'})
+  }})
   
 module.exports = router
