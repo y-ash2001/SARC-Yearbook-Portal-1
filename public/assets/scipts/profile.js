@@ -1,10 +1,28 @@
-var x = document.getElementById('glitch');
-function toggle() {
-	if (x.style.display === 'none') {
-		x.classList.toggle('m-fadeIn');
-		console.log(2);
-	} else {
-		console.log(1);
-		x.classList.toggle('m-fadeOut');
-	}
-}
+let box = document.getElementById('main-photo'),
+	btn = document.getElementById('toggle-button');
+
+btn.addEventListener(
+	'click',
+	function () {
+		if (box.classList.contains('hidden')) {
+			box.classList.remove('hidden');
+			setTimeout(function () {
+				box.classList.remove('visuallyhidden');
+			}, 20);
+		} else {
+			box.classList.add('visuallyhidden');
+			box.addEventListener(
+				'transitionend',
+				function (e) {
+					box.classList.add('hidden');
+				},
+				{
+					capture: false,
+					once: true,
+					passive: false,
+				}
+			);
+		}
+	},
+	false
+);

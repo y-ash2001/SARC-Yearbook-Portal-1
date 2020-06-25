@@ -1,24 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;300&family=Open+Sans:wght@300&display=swap');
 
 /* General boilerplate code for resetting borders and margins */
-@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
-
-.info-msg,
-.success-msg,
-.warning-msg,
-.error-msg {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 3px 3px 3px 3px;
-}
-.success-msg {
-  color: #270;
-  background-color: #DFF2BF;
-}
-.error-msg {
-  color: #D8000C;
-  background-color: #FFBABA;
-}
 * {
 	margin: 0;
 	padding: 0;
@@ -28,11 +10,7 @@
 body {
 	width: 100%;
 	height: 100vh;
-	background: linear-gradient(
-			rgba(246, 247, 249, 0.8),
-			rgba(246, 247, 249, 0.8)
-		),
-		no-repeat center center fixed;
+	background: #15142a;
 	background-size: cover;
 }
 
@@ -205,13 +183,6 @@ label {
 	background: linear-gradient(to bottom right, #5e5aec, #3f9efc);
 	box-shadow: 0 13px 26px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.16);
 }
-
-#photo-modal {
-	display: none;
-}
-#upload-modal {
-	display: none;
-}
 /* CSS for the modal ends */
 
 /* CSS for the Profile Page*/
@@ -234,44 +205,15 @@ label {
 .profile-photo {
 	padding-left: 10%;
 	width: 50%;
-}
-.container {
-	visibility: visible;
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-	width: 350px;
-	height: 350px;
+	transition: all 600ms linear;
 }
 
-.overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	border-radius: 50%;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0);
-	transition: background 0.5s ease;
+.hidden {
+	visibility: hidden;
 }
 
-.container:hover .overlay {
-	display: block;
-	background: rgba(0, 0, 0, 0.6);
-}
-
-.profile-photo img {
-	border-radius: 50%;
-	position: relative;
-	width: 350px;
-	height: 350px;
-	left: 0;
-}
-
-.container:hover .title {
-	top: 90px;
+.visuallyhidden {
+	opacity: 0;
 }
 
 .button {
@@ -303,21 +245,6 @@ label {
 	z-index: 1;
 }
 
-.container:hover .button {
-	opacity: 1;
-}
-
-.m-fadeOut {
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 300ms linear 300ms, opacity 300ms;
-}
-
-.m-fadeIn {
-	visibility: visible;
-	opacity: 1;
-	transition: visibility 300ms linear 300ms, opacity 300ms;
-}
 /* CSS for the Profile Details */
 .profile {
 	width: 50%;
@@ -328,7 +255,20 @@ label {
 	letter-spacing: 2px;
 	padding: 8px;
 }
-
+.photo {
+	width: 350px;
+	height: 350px;
+	-webkit-border-radius: 60px;
+	-webkit-background-clip: padding-box;
+	-moz-border-radius: 60px;
+	-moz-background-clip: padding;
+	border-radius: 50%;
+	background-clip: padding-box;
+	margin: 7px 0 0 5px;
+	float: left;
+	background-size: cover;
+	background-position: center center;
+}
 .name {
 	color: rgba(255, 255, 255, 0.9);
 	font-size: 2.5rem;
@@ -541,6 +481,7 @@ footer {
 	transition: opacity 0.35s ease;
 	margin-bottom: 10px;
 }
+
 /* CSS for Quotes Page ends */
 
 /* CSS for Responsive Website */
@@ -635,7 +576,7 @@ footer {
 		width: 100%;
 	}
 
-	.profile-photo img {
+	.photo {
 		width: 250px;
 		height: 250px;
 	}
@@ -718,6 +659,10 @@ footer {
 		font-weight: 100;
 		float: right;
 		margin-right: 2vh;
+	}
+	#photo-button {
+		height: 40px;
+		width: 125px;
 	}
 	/* CSS for Quotes page ends */
 }

@@ -35,6 +35,15 @@
         <div class="success-msg"><%= msg %></div>
     <% } %>
     <section class="landing">
+
+        <div class="mask" role="dialog" id="modal-mask"></div>
+        <div class="modal" role="alert" id="modal-main">
+            <span class="close" id="close-modal">X</span>
+            <form class="modal-form">
+                <button type="button" class="btn">Submit</button>
+            </form>
+        </div>
+
         <h1>Edit Profile</h1>
         <form class="card" action="/edit/<%= id %>" method="POST">
             <label for="caption" id="discipline">BITS ID:</label>
@@ -44,6 +53,7 @@
             <label for="caption" id="quote">Yearbook Quote:</label>
             <input class="form-styling" type="text" placeholder="Your quote" name="user[quote]">
             <input type="submit" class="btn">
+            <button id="back"><a href="#" onclick="uploadModal()">Upload Photo</a></button>
         </form>
     </section>
 
@@ -57,5 +67,6 @@
         <a href="/<%= id %>/developers"><button id="devs">Developers</button></a>
     </footer>
     <script src="/assets/scipts/app.js"></script>
+    <script src="assets/scipts/new.js"></script>
 </body>
 </html>
