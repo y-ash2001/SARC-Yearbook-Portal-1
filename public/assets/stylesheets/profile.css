@@ -96,10 +96,10 @@ nav {
 
 .modal {
 	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: 400px;
-	min-height: 300px;
+	top: 60%;
+	left: 47%;
+	width: 500px;
+	min-height: 350px;
 	height: auto;
 	margin-left: -200px;
 	margin-top: -300px;
