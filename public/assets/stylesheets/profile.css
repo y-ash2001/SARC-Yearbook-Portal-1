@@ -102,7 +102,7 @@ nav {
 	min-height: 300px;
 	height: auto;
 	margin-left: -200px;
-	margin-top: -150px;
+	margin-top: -300px;
 	background: #15142a;
 	background-size: cover;
 	box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
@@ -182,6 +182,7 @@ label {
 	color: #fff;
 	background: linear-gradient(to bottom right, #5e5aec, #3f9efc);
 	box-shadow: 0 13px 26px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.16);
+	margin-bottom: 20px;
 }
 /* CSS for the modal ends */
 
@@ -203,6 +204,9 @@ label {
 
 /* CSS for the profile photo */
 .profile-photo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	padding-left: 10%;
 	width: 50%;
 	transition: all 600ms linear;
@@ -264,7 +268,7 @@ label {
 	-moz-background-clip: padding;
 	border-radius: 50%;
 	background-clip: padding-box;
-	margin: 7px 0 0 5px;
+	/* margin: 7px 0 0 5px; */
 	float: left;
 	background-size: cover;
 	background-position: center center;
@@ -482,6 +486,25 @@ footer {
 	margin-bottom: 10px;
 }
 
+#photo-upload {
+	font-family: 'Open Sans';
+	font-size: 16px;
+	width: 150px;
+	height: 42px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	font-weight: 100;
+	border-radius: 70px;
+	color: #fff;
+	background: linear-gradient(to bottom right, #6452e9, #639ff9);
+	box-shadow: 0 13px 26px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.16);
+	text-align: center;
+	transition: opacity 0.35s ease;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
 /* CSS for Quotes Page ends */
 
 /* CSS for Responsive Website */
@@ -569,9 +592,9 @@ footer {
 	}
 	/* Code for Profile Page */
 	.profile-photo {
-		display: flex;
+		/* display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: center; */
 		padding-left: 0;
 		width: 100%;
 	}
@@ -673,5 +696,8 @@ footer {
 		margin: 0;
 		top: 20%;
 		left: 5%;
+	}
+	label {
+		font-size: 1.25rem;
 	}
 }
