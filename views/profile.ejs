@@ -50,20 +50,9 @@
         </div>
         <% } %>
 
-        <div class="mask" role="dialog" id="upload-modal"></div>
-        <div class="modal" role="alert" id="photo-modal">
-            <span class="close" id="close-photo-modal">X</span>
-            <form class="modal-form">
-                <button type="button" class="btn">Submit</button>
-            </form>
-        </div>
         <div class="card" id="main-photo">
             <div class="profile-photo">
-                <div class="container" id="glitch">
-                <img src="<%= user.imageUrl %>"     class="main">
-                <div class="overlay" class="main"></div>
-                <div class="button" class="main" id='photo-button'><a href="#" class="main">Upload Photo</a></div>
-            </div>
+                <div class="photo" style="background-image: url(assets/images/profile.jpg)"></div>
             </div>
             <div class="profile">
                 <p class="name"><b>Name: </b><%= user.name %></p>
