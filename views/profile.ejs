@@ -52,7 +52,8 @@
 
         <div class="card" id="main-photo">
             <div class="profile-photo">
-                <div class="photo" style="background-image: url(assets/images/profile.jpg)"></div>
+                <div class="photo" style="background-image: url(<%= user.imageUrl %>)"></div>
+                <a href="/<%= user.id %>/upload"><button id="devs">Upload Picture</button></a>        
             </div>
             <div class="profile">
                 <p class="name"><b>Name: </b><%= user.name %></p>
