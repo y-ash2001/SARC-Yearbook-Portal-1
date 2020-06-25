@@ -104,7 +104,6 @@ nav {
 	color: white;
 	font-weight: 100;
 	padding-top: 8vh;
-	margin-left: 8vh;
 }
 
 .landing h2 {
@@ -153,10 +152,12 @@ label {
 	font-family: 'Heebo';
 	font-weight: 300;
 	font-size: 2rem;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	/* padding-top: 20px;
+	padding-bottom: 10px; */
 	color: rgba(255, 255, 255, 0.9);
-	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* CSS for the Submit button */
@@ -176,6 +177,40 @@ label {
 	background: linear-gradient(to bottom right, #5e5aec, #3f9efc);
 	box-shadow: 0 13px 26px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.16);
 }
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+	font-family: 'Open Sans';
+	font-size: 14px;
+	/* margin-top: 10px; */
+	width: 130px;
+	height: 42px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	font-weight: 300;
+	/* margin-right: auto; */
+	border-radius: 70px;
+	color: #fff;
+	background: linear-gradient(to bottom right, #6452e9, #639ff9);
+	box-shadow: 0 13px 26px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.16);
+}
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile + label * {
+	pointer-events: none;
+}
+
 /* CSS for the Back to My Profile Button */
 #back a {
 	text-decoration: none;
