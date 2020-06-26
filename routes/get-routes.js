@@ -29,17 +29,20 @@ router.get('/:id/notifications', async (req, res) => {
 router.get('/:id1/:id2/caption', async (req, res) => {
     id1 = req.params.id1
     id2 = req.params.id2
-    const user = await User.findById(id2)
-    name = user.name
-    captions = user.captions
+    const user1 = await User.findById(id1)
+    const user2 = await User.findById(id2)
+    name = user1.name
+    captions = user2.captions
     if(captions.find(o => o.name ===name )) {
       for(let i=0; i<captions.length; i++) {
         if(captions[i].name===name) {
           oldcaption = captions[i].caption
       }}
+      name = user2.name
       res.render('caption', {id:id1, name:name, id2:id2, oldcaption:oldcaption})
     }
     else {
+    name = user2.name
     res.render('caption', {id:id1, name:name, id2:id2})
     }
   })
