@@ -36,11 +36,9 @@
 
     <section class="landing">
 
-        <div class="card">
+        <div class="card" id="main-photo">
             <div class="profile-photo">
-                <div class="container" id="glitch">
-                <img src="<%= user.imageUrl %>" class="main">
-            </div>
+                <div class="photo" style="background-image: url(<%= user.imageUrl %>)"></div>       
             </div>
             <div class="profile">
                 <p class="name"><b>Name: </b><%= user.name %></p>
@@ -73,7 +71,7 @@
                     <a href="https://www.facebook.com/arcbitspilani/"><img src="/assets/images/facebook.png" id="fb"></a>
                     <a href="https://www.instagram.com/sarcbitspilani/"><img src="/assets/images/instagram.png" id="insta"></a>
                 </div>
-                <a href="/<%= user.id %>/developers"><button id="devs">Developers</button></a>
+                <a href="/<%= id %>/developers"><button id="devs">Developers</button></a>
             </footer>
             <script src="/assets/scipts/app.js"></script>
         </body>
