@@ -111,7 +111,7 @@ router.post('/:id1/:id2/caption', async (req, res) => {
     id1 = req.params.id1
     id2 = req.params.id2
     if (caption === '') {
-      res.render('caption', {error : 'Please enter a valid caption!'})
+      res.render('caption', {id:id1, id1:id2, name:user2.name, error : 'Please enter a valid caption!'})
     }
     else {
       const user1 = await User.findById(id1)
@@ -124,7 +124,7 @@ router.post('/:id1/:id2/caption', async (req, res) => {
           captions[i].caption=caption
         }}
         await user2.updateOne({captions : captions})
-        res.render('caption', {success : 'Caption added successfully!'})
+        res.render('caption', {id:id1, id1:id2, name:user2.name, success : 'Caption added successfully!'})
       }
       else {
         await user2.updateOne({
@@ -134,7 +134,7 @@ router.post('/:id1/:id2/caption', async (req, res) => {
               caption : caption
           }]
         }}})
-        res.render('caption', {success : 'Caption added successfully!'})
+        res.render('caption', {id:id1, id1:id2, name:user2.name, success : 'Caption added successfully!'})
       }
     }})
 
