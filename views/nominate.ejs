@@ -32,6 +32,7 @@
         </div>
     
         </nav>
+    <section class="landing">
         <% if (typeof error!=="undefined") { %>
             <div class="error-msg"><%= error %></div>
         <% } %>
@@ -39,7 +40,6 @@
         <% if (typeof success!=="undefined") { %>
             <div class="success-msg"><%= success %></div>
         <% } %>
-    <section class="landing">
         <h2>Nominate a Friend to write a Caption in your Yearbook!</h2>
         <form class="card" action="/nominate/<%= id %>" method="POST">
             <label for="caption">BITS ID:</label>
