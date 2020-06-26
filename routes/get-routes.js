@@ -31,7 +31,17 @@ router.get('/:id1/:id2/caption', async (req, res) => {
     id2 = req.params.id2
     const user = await User.findById(id2)
     name = user.name
+    captions = user.captions
+    if(captions.find(o => o.name ===name )) {
+      for(let i=0; i<captions.length; i++) {
+        if(captions[i].name===name) {
+          oldcaption = captions[i].caption
+      }}
+      res.render('caption', {id:id1, name:name, id2:id2, oldcaption:oldcaption})
+    }
+    else {
     res.render('caption', {id:id1, name:name, id2:id2})
+    }
   })
 
 router.get('/:id/search/:bitsid', async(req, res) => {

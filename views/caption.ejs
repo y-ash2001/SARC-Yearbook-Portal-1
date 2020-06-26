@@ -43,7 +43,11 @@
         <h2>Write a Caption for your Friend!</h2>
         <form class="card" action="/<%= id %>/<%= id2 %>/caption" method="POST">
             <label for="caption">Caption:</label>
-            <input class="form-styling" type="text" placeholder="Caption" name="user[caption]">
+            <% if (typeof oldcaption!=="undefined") { %>
+            <input class="form-styling" type="text" value="<%= oldcaption %>" name="user[caption]">
+            <% } else { %>
+            <input class="form-styling" type="text" placeholder="Caption" name="user[caption]">    
+            <% } %>
             <input type="submit" class="btn">
         </form>
     </section>
