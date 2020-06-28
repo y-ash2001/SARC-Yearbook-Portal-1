@@ -52,8 +52,11 @@ router.post('/nominate/:id', async (req, res) => {
     name = user1.name
     const user2 = await User.findOne({bitsId : nomineeid})
     if (user2) {
+      if(user2.id===user1.id) {
+        return res.render('nominate', {id:id, error: 'You cannot nominate yourself!'})
+      }
       if (user2.nominatedby.some(e => e.id === nominatorid)) {
-        res.render('nominate', {id : id, success : 'User has already been nominated!'})
+        return res.render('nominate', {id : id, success : 'User has already been nominated!'})
       }
       else {
         const email = user2.email
