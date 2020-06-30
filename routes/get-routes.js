@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const bodyParser = require('body-parser');
-const User = require('../models/user')
+const User = require('../models/user');
 
 router.get('/profile/:id', async (req, res) => {
     const _id = req.params.id
@@ -62,5 +62,6 @@ router.get('/:id/upload', (req, res) => {
 router.get('/:id/developers', (req, res) => {
   res.render('developers', {id : req.params.id})
 })
+
 
 module.exports = router
