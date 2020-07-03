@@ -56,9 +56,7 @@ html {
 a {
 	text-decoration: none;
 }
-a:visited {
-    color : white;
-}
+
 .google-icon-wrapper {
 	width: 42px;
 	height: 42px;
@@ -97,21 +95,45 @@ a:visited {
 @keyframes slide {
 	0% {
 		background-image: url("../images/image1.JPG");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
 	}
 	20% {
 		background-image: url("../images/image2.JPG");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
 	}
 	40% {
 		background-image: url("../images/image3.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
 	}
 	60% {
 		background-image: url("../images/image4.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
 	}
 	80% {
 		background-image: url("../images/image5.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
 	}
 	100% {
 		background-image: url("../images/image6.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
 	}
 }
 
