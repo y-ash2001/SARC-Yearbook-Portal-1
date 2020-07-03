@@ -7,16 +7,16 @@
 .success-msg,
 .warning-msg,
 .error-msg {
-  padding: 10px;
-  border-radius: 3px 3px 3px 3px;
+	padding: 10px;
+	border-radius: 3px 3px 3px 3px;
 }
 .success-msg {
-  color: #270;
-  background-color: #DFF2BF;
+	color: #270;
+	background-color: #dff2bf;
 }
 .error-msg {
-  color: #D8000C;
-  background-color: #FFBABA;
+	color: #d8000c;
+	background-color: #ffbaba;
 }
 * {
 	margin: 0;
@@ -27,17 +27,13 @@
 body {
 	width: 100%;
 	height: 100vh;
-	background: linear-gradient(
-			rgba(246, 247, 249, 0.8),
-			rgba(246, 247, 249, 0.8)
-		),
-		no-repeat center center fixed;
+	background: #15142a;
 	background-size: cover;
 }
 
 /* CSS for Navigation Bar and Hamburger Menu */
 nav {
-	height: 8vh;
+	height: 65px;
 	background: #004e92;
 }
 
@@ -47,17 +43,16 @@ nav {
 
 .search-bar {
 	font-family: 'Heebo';
-	padding-top: 20px;
+	padding-top: 12.5px;
 	padding-left: 2vh;
 	width: 35%;
 }
 
 #search {
-	height: 4vh;
-	padding-left: 20px;
+	height: 40px;
+	padding-left: 30px;
 	border: none;
 	border-radius: 20px;
-	margin-bottom: 20px;
 	background: rgba(255, 255, 255, 0.6);
 	font-size: 20px;
 	display: block;
@@ -65,7 +60,6 @@ nav {
 	overflow: hidden;
 	line-height: 40px;
 }
-
 .links {
 	width: 65%;
 }
@@ -301,12 +295,6 @@ footer {
 /* Media Queries for Responsive Website */
 @media screen and (max-width: 910px) {
 	/* Code for Navbar and Hamburger Menu */
-	.line {
-		width: 30px;
-		height: 3px;
-		background: white;
-		margin: 5px;
-	}
 	.landing {
 		width: 100%;
 		height: auto;
@@ -317,65 +305,165 @@ footer {
 	}
 
 	.search-bar {
-		padding: 2vh;
 		position: absolute;
 		width: 80%;
 	}
 
-	.hamburger {
+	.button_container {
 		position: absolute;
+		top: 35%;
+		right: 4%;
+		height: 27px;
+		width: 35px;
 		cursor: pointer;
-		right: 5%;
-		top: 50%;
-		transform: translate(-5%, -50%);
-		z-index: 2;
+		z-index: 200;
+		transition: opacity 0.25s ease;
+	}
+	.button_container.active {
+		position: fixed;
+		top: 3.25%;
+	}
+	.button_container:hover {
+		opacity: 0.7;
 	}
 
-	.nav-links {
+	.button_container.active .top {
+		transform: translateY(11px) translateX(0) rotate(45deg);
+		background: #fff;
+	}
+
+	.button_container.active .middle {
+		opacity: 0;
+		background: #fff;
+	}
+
+	.button_container.active .bottom {
+		transform: translateY(-11px) translateX(0) rotate(-45deg);
+		background: #fff;
+	}
+
+	.button_container span {
+		background: white;
+		border: none;
+		height: 2px;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: all 0.35s ease;
+		cursor: pointer;
+	}
+
+	.button_container span:nth-of-type(2) {
+		top: 11px;
+	}
+
+	.button_container span:nth-of-type(3) {
+		top: 22px;
+	}
+
+	.links {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		font-family: 'Heebo';
 		position: fixed;
 		background: #004e92;
-		height: 100vh;
+		top: 0;
+		left: 0;
 		width: 100%;
-		flex-direction: column;
-		clip-path: circle(100px at 90% 10%);
-		-webkit-clip-path: circle(100px at 90% -10%);
-		transition: all 1s ease-out;
-		pointer-events: none;
-	}
-
-	.nav-links.open {
-		clip-path: circle(100px at 90% 10%);
-		-webkit-clip-path: circle(1200px at 90% -10%);
-		pointer-events: all;
-	}
-
-	.nav-links li {
+		height: 0%;
 		opacity: 0;
+		z-index: 100;
+		visibility: hidden;
+		transition: opacity 0.35s, visibility 0.35s, height 0.35s;
+		overflow: hidden;
 	}
 
-	.nav-links li a {
+	.links.open {
+		opacity: 1;
+		visibility: visible;
+		height: 100%;
+	}
+
+	.links.open li {
+		animation: fadeInRight 0.5s ease forwards;
+		animation-delay: 0.35s;
+	}
+
+	.links.open li:nth-of-type(2) {
+		animation-delay: 0.4s;
+	}
+
+	.links.open li:nth-of-type(3) {
+		animation-delay: 0.45s;
+	}
+
+	.links.open li:nth-of-type(4) {
+		animation-delay: 0.5s;
+	}
+	.links ul {
+		list-style: none;
+		padding: 0;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		position: relative;
+		height: 100%;
+	}
+	.links ul li {
+		display: block;
+		position: relative;
+		opacity: 0;
+		text-align: center;
+	}
+
+	.links ul li a {
 		font-size: 1.5rem;
 		letter-spacing: 5px;
+		font-family: 'Heebo';
+		display: block;
+		position: relative;
+		color: #fff;
+		text-decoration: none;
+		overflow: hidden;
 	}
 
-	.nav-links li:nth-child(1) {
-		transition: all 0.5s ease 0.2s;
+	.links ul li a:hover:after,
+	.links ul li a:focus:after,
+	.links ul li a:active:after {
+		width: 100%;
 	}
 
-	.nav-links li:nth-child(2) {
-		transition: all 0.5s ease 0.4s;
+	.links ul li a:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 0%;
+		transform: translateX(-50%);
+		height: 100%;
+		background: #fff;
+		transition: 0.35s;
 	}
-
-	.nav-links li:nth-child(3) {
-		transition: all 0.5s ease 0.6s;
+	.nav-links ul {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
+	@keyframes fadeInRight {
+		0% {
+			opacity: 0;
+			left: 20%;
+		}
 
-	.nav-links li:nth-child(4) {
-		transition: all 0.5s ease 0.8s;
-	}
-
-	li.fade {
-		opacity: 1;
+		100% {
+			opacity: 1;
+			left: 0;
+		}
 	}
 	/* Code for Navbar and Hamburger Menu ends*/
 
