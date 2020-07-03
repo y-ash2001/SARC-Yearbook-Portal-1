@@ -16,7 +16,7 @@
         </form>
     </div>
 
-    <div class="links">
+    <div class="links" id="nav-links">
         <ul class="nav-links">
             <li><a href="/profile/<%= user._id %>/edit">Edit Profile</a></li>
             <li><a href="/<%= user._id %>/nominate">Nominate a Friend</a></li>
@@ -25,10 +25,10 @@
         </ul>
     </div>
 
-    <div class="hamburger" id="toggle-button">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
+    <div class="button_container" id="toggle" onclick="toggle()">
+        <span class="top"></span>
+        <span class="middle"></span>
+        <span class="bottom"></span>
     </div>
 
     </nav>
@@ -91,7 +91,6 @@
     </footer>
 
     <script src="/assets/scipts/app.js"></script>
-    <script src="/assets/scipts/profile.js"></script>
     <script src="/assets/scipts/new.js"></script>
 </body>
 </html>

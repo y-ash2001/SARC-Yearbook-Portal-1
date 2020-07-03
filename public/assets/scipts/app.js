@@ -1,13 +1,9 @@
-const hamburger = document.querySelector('.hamburger');
-const navlinks = document.querySelector('.nav-links');
-const links = document.querySelectorAll('.nav-links li');
-
-hamburger.addEventListener('click', () => {
-	navlinks.classList.toggle('open');
-	links.forEach((link) => {
-		link.classList.toggle('fade');
-	});
-});
+over = document.getElementById('nav-links');
+tog = document.getElementById('toggle');
+function toggle() {
+	tog.classList.toggle('active');
+	over.classList.toggle('open');
+}
 
 function signOut() {
 	var auth2 = gapi.auth2.getAuthInstance();
@@ -15,6 +11,10 @@ function signOut() {
 		console.log('User signed out.');
 	});
 }
-function preventBack(){window.history.forward();}
-         setTimeout("preventBack()", 0);
-         window.onunload=function(){null};
+function preventBack() {
+	window.history.forward();
+}
+setTimeout('preventBack()', 0);
+window.onunload = function () {
+	null;
+};
